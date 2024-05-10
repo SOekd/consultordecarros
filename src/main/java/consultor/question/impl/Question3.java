@@ -1,6 +1,6 @@
 package consultor.question.impl;
 
-import consultor.car.CarSize;
+import consultor.car.CarConfiguration;
 import consultor.car.PseudoCar;
 import consultor.question.Question;
 import consultor.ui.QuestionView;
@@ -13,14 +13,14 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question2 implements Question {
+public class Question3 implements Question {
 
-    private final List<CarSize> sizes = new ArrayList<>();
+    private final List<CarConfiguration> configurations = new ArrayList<>();
 
     @Override
     public void render(QuestionView view, PseudoCar car, Text question, Button confirm, HBox answers) {
 
-        question.setText("Qual o porte do carro que você deseja?");
+        question.setText("Qual a configuração do carro que deseja?");
 
         answers.getChildren().clear();
 
@@ -30,23 +30,23 @@ public class Question2 implements Question {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
-        if (car.getSize() != null) {
-            sizes.addAll(car.getSize());
+        if (car.getConfiguration() != null) {
+            configurations.addAll(car.getConfiguration());
         }
 
-        for (CarSize value : CarSize.values()) {
+        for (CarConfiguration value : CarConfiguration.values()) {
 
             var checkBox = new CheckBox(value.getDisplayName());
 
-            if (sizes.contains(value)) {
+            if (configurations.contains(value)) {
                 checkBox.setSelected(true);
             }
 
             checkBox.setOnAction(event -> {
                 if (checkBox.isSelected()) {
-                    sizes.add(value);
+                    configurations.add(value);
                 } else {
-                    sizes.remove(value);
+                    configurations.remove(value);
                 }
             });
 
@@ -63,12 +63,12 @@ public class Question2 implements Question {
 
         confirm.setOnAction(event -> {
 
-            if (sizes.isEmpty()) {
-                view.displayError("Escolha ao menos um tipo!");
+            if (configurations.isEmpty()) {
+                view.displayError("Escolha ao menos uma configuração!");
                 return;
             }
 
-            view.changePseudoCar(pseudoCar -> pseudoCar.setSize(sizes));
+            view.changePseudoCar(pseudoCar -> pseudoCar.setConfiguration(configurations));
 
             view.invokeNextQuestion();
         });

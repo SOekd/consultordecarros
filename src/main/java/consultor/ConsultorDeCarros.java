@@ -26,7 +26,6 @@ public class ConsultorDeCarros extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("a");
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 
         parseCar();

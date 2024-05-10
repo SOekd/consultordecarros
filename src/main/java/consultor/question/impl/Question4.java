@@ -1,6 +1,7 @@
 package consultor.question.impl;
 
-import consultor.car.CarSize;
+import consultor.car.CarAspiration;
+import consultor.car.CarConfiguration;
 import consultor.car.PseudoCar;
 import consultor.question.Question;
 import consultor.ui.QuestionView;
@@ -13,14 +14,14 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question2 implements Question {
+public class Question4 implements Question {
 
-    private final List<CarSize> sizes = new ArrayList<>();
+    private final List<CarAspiration> aspirations = new ArrayList<>();
 
     @Override
     public void render(QuestionView view, PseudoCar car, Text question, Button confirm, HBox answers) {
 
-        question.setText("Qual o porte do carro que você deseja?");
+        question.setText("Qual aspiração que você deseja no carro?");
 
         answers.getChildren().clear();
 
@@ -30,23 +31,23 @@ public class Question2 implements Question {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
-        if (car.getSize() != null) {
-            sizes.addAll(car.getSize());
+        if (car.getAspiration() != null) {
+            aspirations.addAll(car.getAspiration());
         }
 
-        for (CarSize value : CarSize.values()) {
+        for (CarAspiration value : CarAspiration.values()) {
 
             var checkBox = new CheckBox(value.getDisplayName());
 
-            if (sizes.contains(value)) {
+            if (aspirations.contains(value)) {
                 checkBox.setSelected(true);
             }
 
             checkBox.setOnAction(event -> {
                 if (checkBox.isSelected()) {
-                    sizes.add(value);
+                    aspirations.add(value);
                 } else {
-                    sizes.remove(value);
+                    aspirations.remove(value);
                 }
             });
 
@@ -63,12 +64,12 @@ public class Question2 implements Question {
 
         confirm.setOnAction(event -> {
 
-            if (sizes.isEmpty()) {
-                view.displayError("Escolha ao menos um tipo!");
+            if (aspirations.isEmpty()) {
+                view.displayError("Escolha ao menos uma aspiração!");
                 return;
             }
 
-            view.changePseudoCar(pseudoCar -> pseudoCar.setSize(sizes));
+            view.changePseudoCar(pseudoCar -> pseudoCar.setAspiration(aspirations));
 
             view.invokeNextQuestion();
         });

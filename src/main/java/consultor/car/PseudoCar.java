@@ -15,8 +15,6 @@ public class PseudoCar {
 
     private List<CarAspiration> aspiration;
 
-    private Double autonomy;
-
     private Double minimumAutonomy;
 
     private Double maximumAutonomy;
@@ -59,13 +57,12 @@ public class PseudoCar {
 
     }
 
-    public PseudoCar(Double minimumPrice, Double maximumPrice, List<CarSize> size, List<CarConfiguration> configuration, List<CarAspiration> aspiration, Double autonomy, Double minimumAutonomy, Double maximumAutonomy, Double minimumConsumption, Double maximumConsumption, Double minimumAcceleration, Double maximumAcceleration, List<CarFuelType> fuelType, List<CarTransmission> transmission, List<CarSteeringType> steeringType, List<CarTraction> traction, List<CarPropulsion> propulsion, Integer minimumWarranty, Integer maximumWarranty, Integer minimumSeats, Integer maximumSeats, Integer minimumTrunk, Integer maximumTrunk, List<CarOrigin> origin, List<CarSeatType> seatType) {
+    public PseudoCar(Double minimumPrice, Double maximumPrice, List<CarSize> size, List<CarConfiguration> configuration, List<CarAspiration> aspiration, Double minimumAutonomy, Double maximumAutonomy, Double minimumConsumption, Double maximumConsumption, Double minimumAcceleration, Double maximumAcceleration, List<CarFuelType> fuelType, List<CarTransmission> transmission, List<CarSteeringType> steeringType, List<CarTraction> traction, List<CarPropulsion> propulsion, Integer minimumWarranty, Integer maximumWarranty, Integer minimumSeats, Integer maximumSeats, Integer minimumTrunk, Integer maximumTrunk, List<CarOrigin> origin, List<CarSeatType> seatType) {
         this.minimumPrice = minimumPrice;
         this.maximumPrice = maximumPrice;
         this.size = size;
         this.configuration = configuration;
         this.aspiration = aspiration;
-        this.autonomy = autonomy;
         this.minimumAutonomy = minimumAutonomy;
         this.maximumAutonomy = maximumAutonomy;
         this.minimumConsumption = minimumConsumption;
@@ -125,14 +122,6 @@ public class PseudoCar {
 
     public void setAspiration(List<CarAspiration> aspiration) {
         this.aspiration = aspiration;
-    }
-
-    public Double getAutonomy() {
-        return autonomy;
-    }
-
-    public void setAutonomy(Double autonomy) {
-        this.autonomy = autonomy;
     }
 
     public Double getMinimumAutonomy() {
@@ -292,12 +281,12 @@ public class PseudoCar {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PseudoCar pseudoCar = (PseudoCar) o;
-        return Objects.equals(minimumPrice, pseudoCar.minimumPrice) && Objects.equals(maximumPrice, pseudoCar.maximumPrice) && Objects.equals(size, pseudoCar.size) && Objects.equals(configuration, pseudoCar.configuration) && Objects.equals(aspiration, pseudoCar.aspiration) && Objects.equals(autonomy, pseudoCar.autonomy) && Objects.equals(minimumAutonomy, pseudoCar.minimumAutonomy) && Objects.equals(maximumAutonomy, pseudoCar.maximumAutonomy) && Objects.equals(minimumConsumption, pseudoCar.minimumConsumption) && Objects.equals(maximumConsumption, pseudoCar.maximumConsumption) && Objects.equals(minimumAcceleration, pseudoCar.minimumAcceleration) && Objects.equals(maximumAcceleration, pseudoCar.maximumAcceleration) && Objects.equals(fuelType, pseudoCar.fuelType) && Objects.equals(transmission, pseudoCar.transmission) && Objects.equals(steeringType, pseudoCar.steeringType) && Objects.equals(traction, pseudoCar.traction) && Objects.equals(propulsion, pseudoCar.propulsion) && Objects.equals(minimumWarranty, pseudoCar.minimumWarranty) && Objects.equals(maximumWarranty, pseudoCar.maximumWarranty) && Objects.equals(minimumSeats, pseudoCar.minimumSeats) && Objects.equals(maximumSeats, pseudoCar.maximumSeats) && Objects.equals(minimumTrunk, pseudoCar.minimumTrunk) && Objects.equals(maximumTrunk, pseudoCar.maximumTrunk) && Objects.equals(origin, pseudoCar.origin) && Objects.equals(seatType, pseudoCar.seatType);
+        return Objects.equals(minimumPrice, pseudoCar.minimumPrice) && Objects.equals(maximumPrice, pseudoCar.maximumPrice) && Objects.equals(size, pseudoCar.size) && Objects.equals(configuration, pseudoCar.configuration) && Objects.equals(aspiration, pseudoCar.aspiration) && Objects.equals(minimumAutonomy, pseudoCar.minimumAutonomy) && Objects.equals(maximumAutonomy, pseudoCar.maximumAutonomy) && Objects.equals(minimumConsumption, pseudoCar.minimumConsumption) && Objects.equals(maximumConsumption, pseudoCar.maximumConsumption) && Objects.equals(minimumAcceleration, pseudoCar.minimumAcceleration) && Objects.equals(maximumAcceleration, pseudoCar.maximumAcceleration) && Objects.equals(fuelType, pseudoCar.fuelType) && Objects.equals(transmission, pseudoCar.transmission) && Objects.equals(steeringType, pseudoCar.steeringType) && Objects.equals(traction, pseudoCar.traction) && Objects.equals(propulsion, pseudoCar.propulsion) && Objects.equals(minimumWarranty, pseudoCar.minimumWarranty) && Objects.equals(maximumWarranty, pseudoCar.maximumWarranty) && Objects.equals(minimumSeats, pseudoCar.minimumSeats) && Objects.equals(maximumSeats, pseudoCar.maximumSeats) && Objects.equals(minimumTrunk, pseudoCar.minimumTrunk) && Objects.equals(maximumTrunk, pseudoCar.maximumTrunk) && Objects.equals(origin, pseudoCar.origin) && Objects.equals(seatType, pseudoCar.seatType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(minimumPrice, maximumPrice, size, configuration, aspiration, autonomy, minimumAutonomy, maximumAutonomy, minimumConsumption, maximumConsumption, minimumAcceleration, maximumAcceleration, fuelType, transmission, steeringType, traction, propulsion, minimumWarranty, maximumWarranty, minimumSeats, maximumSeats, minimumTrunk, maximumTrunk, origin, seatType);
+        return Objects.hash(minimumPrice, maximumPrice, size, configuration, aspiration, minimumAutonomy, maximumAutonomy, minimumConsumption, maximumConsumption, minimumAcceleration, maximumAcceleration, fuelType, transmission, steeringType, traction, propulsion, minimumWarranty, maximumWarranty, minimumSeats, maximumSeats, minimumTrunk, maximumTrunk, origin, seatType);
     }
 
     @Override
@@ -308,7 +297,6 @@ public class PseudoCar {
                 ", size=" + size +
                 ", configuration=" + configuration +
                 ", aspiration=" + aspiration +
-                ", autonomy=" + autonomy +
                 ", minimumAutonomy=" + minimumAutonomy +
                 ", maximumAutonomy=" + maximumAutonomy +
                 ", minimumConsumption=" + minimumConsumption +
@@ -339,7 +327,6 @@ public class PseudoCar {
                 size,
                 configuration,
                 aspiration,
-                autonomy,
                 minimumAutonomy,
                 maximumAutonomy,
                 minimumConsumption,
