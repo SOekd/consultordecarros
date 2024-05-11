@@ -89,12 +89,22 @@ public class QuestionView extends Scene {
         currentQuestion++;
 
         return Arrays.stream(Questions.values())
-                    .filter(it -> it.name().endsWith("_" + currentQuestion))
-                    .findAny()
+                .filter(it -> it.name().endsWith("_" + currentQuestion))
+                .findAny()
                 .map(it -> {
                     var configuration = it.getConfiguration();
 
-                    configuration.getQuestionInstance().render(configuration, pseudoCar, this, questionText, confirmButton, answers);
+                    configuration.getQuestionInstance().render(
+                            configuration,
+                            pseudoCar,
+                            this,
+                            questionText,
+                            confirmButton,
+                            answers,
+                            aVoid -> {
+
+                            }
+                    );
                     return true;
                 })
                 .orElse(false);

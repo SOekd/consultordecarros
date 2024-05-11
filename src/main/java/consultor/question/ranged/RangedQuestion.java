@@ -9,13 +9,23 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
+import java.util.function.Consumer;
+
 public class RangedQuestion implements Question {
 
     public static final String MESSAGE_EMPTY = "empty";
     public static final String MESSAGE_MIN_GREATER_THAN_MAX = "min_greater_than_max";
 
     @Override
-    public void render(QuestionConfiguration<?> rawConfiguration, PseudoCar car, QuestionView view, Text question, Button confirm, HBox answers) {
+    public void render(
+            QuestionConfiguration<?> rawConfiguration,
+            PseudoCar car,
+            QuestionView view,
+            Text question,
+            Button confirm,
+            HBox answers,
+            Consumer<Void> finished
+            ) {
         RangedDoubleQuestionConfiguration configuration = (RangedDoubleQuestionConfiguration) rawConfiguration;
 
 
@@ -69,12 +79,15 @@ public class RangedQuestion implements Question {
                 return;
             }
 
+            System.out.println("HERADASDA");
             view.changePseudoCar(pseudoCar -> {
                 configuration.getSetMaximum().accept(car, max);
                 configuration.getSetMinimum().accept(car, min);
             });
 
-            view.invokeNextQuestion();
+            if (!view.invokeNextQuestion()) {
+
+            }
         });
 
         answers.getChildren().addAll(minimum, maximum);

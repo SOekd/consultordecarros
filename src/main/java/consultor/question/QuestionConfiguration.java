@@ -2,7 +2,7 @@ package consultor.question;
 
 import java.util.Map;
 
-public abstract class QuestionConfiguration<T extends Question<?>> {
+public abstract class QuestionConfiguration<T extends Question> {
 
     protected final String question;
 
