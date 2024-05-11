@@ -4,6 +4,7 @@ import atlantafx.base.theme.Styles;
 import consultor.car.Car;
 import consultor.car.PseudoCar;
 import consultor.question.Question;
+import consultor.question.Questions;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -21,6 +22,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -85,14 +87,18 @@ public class QuestionView extends Scene {
 
     public boolean invokeNextQuestion() {
         currentQuestion++;
-        try {
-            Question question = (Question) Class.forName("consultor.question.impl.Question" + currentQuestion).getDeclaredConstructor().newInstance();
-            question.render(this, pseudoCar, questionText, confirmButton, answers);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+
+        return Arrays.stream(Questions.values())
+                    .filter(it -> it.name().endsWith("_" + currentQuestion))
+                    .findAny()
+                .map(it -> {
+                    var configuration = it.getConfiguration();
+
+                    configuration.getQuestionInstance().render(configuration, pseudoCar, this, questionText, confirmButton, answers);
+                    return true;
+                })
+                .orElse(false);
+//            question.render(this, pseudoCar, questionText, confirmButton, answers);
     }
 
     public void changePseudoCar(Consumer<PseudoCar> consumer) {

@@ -1,36 +1,39 @@
 package consultor.question.ranged;
 
+import consultor.car.PseudoCar;
 import consultor.question.QuestionConfigurationBuilder;
 
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class RangedDoubleQuestionConfigurationBuilder extends QuestionConfigurationBuilder {
 
-    private Supplier<Double> getMaximum;
+    private Function<PseudoCar, Double> getMaximum;
 
-    private Supplier<Double> getMinimum;
+    private Function<PseudoCar, Double> getMinimum;
 
-    private Consumer<Double> setMaximum;
+    private BiConsumer<PseudoCar, Double> setMaximum;
 
-    private Consumer<Double> setMinimum;
+    private BiConsumer<PseudoCar, Double> setMinimum;
 
-    public RangedDoubleQuestionConfigurationBuilder getMaximum(Supplier<Double> supplier) {
+    public RangedDoubleQuestionConfigurationBuilder getMaximum(Function<PseudoCar, Double> supplier) {
         this.getMaximum = supplier;
         return this;
     }
 
-    public RangedDoubleQuestionConfigurationBuilder getMinimum(Supplier<Double> supplier) {
+    public RangedDoubleQuestionConfigurationBuilder getMinimum(Function<PseudoCar, Double> supplier) {
         this.getMinimum = supplier;
         return this;
     }
 
-    public RangedDoubleQuestionConfigurationBuilder setMaximum(Consumer<Double> consumer) {
+    public RangedDoubleQuestionConfigurationBuilder setMaximum(BiConsumer<PseudoCar, Double> consumer) {
         this.setMaximum = consumer;
         return this;
     }
 
-    public RangedDoubleQuestionConfigurationBuilder setMinimum(Consumer<Double> consumer) {
+    public RangedDoubleQuestionConfigurationBuilder setMinimum(BiConsumer<PseudoCar, Double> consumer) {
         this.setMinimum = consumer;
         return this;
     }

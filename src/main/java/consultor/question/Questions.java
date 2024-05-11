@@ -1,14 +1,17 @@
 package consultor.question;
 
+import consultor.car.PseudoCar;
 import consultor.question.ranged.RangedDoubleQuestionConfigurationBuilder;
-import consultor.question.ranged.RangedQuestion;
 
 public enum Questions {
 
     QUESTION_1(
             new RangedDoubleQuestionConfigurationBuilder()
-                    .question("Qual a faixa de valor do carro que você deseja?")
-                    .getGet
+                    .getMinimum(PseudoCar::getMinimumPrice)
+                    .getMaximum(PseudoCar::getMaximumPrice)
+                    .setMaximum(PseudoCar::setMaximumPrice)
+                    .setMinimum(PseudoCar::setMinimumPrice)
+                    .question("Qual o preço mínimo e máximo que você deseja?")
                     .build()
     );
 
@@ -18,7 +21,7 @@ public enum Questions {
         this.configuration = configuration;
     }
 
-    public QuestionConfiguration getConfiguration() {
+    public QuestionConfiguration<?> getConfiguration() {
         return configuration;
     }
 

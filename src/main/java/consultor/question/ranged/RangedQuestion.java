@@ -2,19 +2,23 @@ package consultor.question.ranged;
 
 import consultor.car.PseudoCar;
 import consultor.question.Question;
+import consultor.question.QuestionConfiguration;
 import consultor.ui.QuestionView;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-public class RangedQuestion implements Question<RangedDoubleQuestionConfiguration> {
+public class RangedQuestion implements Question {
 
     public static final String MESSAGE_EMPTY = "empty";
     public static final String MESSAGE_MIN_GREATER_THAN_MAX = "min_greater_than_max";
 
     @Override
-    public void render(RangedDoubleQuestionConfiguration configuration, QuestionView view, Text question, Button confirm, HBox answers) {
+    public void render(QuestionConfiguration<?> rawConfiguration, PseudoCar car, QuestionView view, Text question, Button confirm, HBox answers) {
+        RangedDoubleQuestionConfiguration configuration = (RangedDoubleQuestionConfiguration) rawConfiguration;
+
+
         question.setText(configuration.getQuestion());
 
         answers.getChildren().clear();
@@ -28,8 +32,8 @@ public class RangedQuestion implements Question<RangedDoubleQuestionConfiguratio
             }
         });
         minimum.setPromptText("Mínimo");
-        if (configuration.getGetMinimum().get() != null) {
-            minimum.setText(String.valueOf(configuration.getGetMinimum().get()));
+        if (configuration.getGetMinimum().apply(car) != null) {
+            minimum.setText(String.valueOf(configuration.getGetMinimum().apply(car)));
         }
 
         TextField maximum = new TextField();
@@ -41,8 +45,8 @@ public class RangedQuestion implements Question<RangedDoubleQuestionConfiguratio
             }
         });
 
-        if (configuration.getGetMaximum().get() != null) {
-            maximum.setText(String.valueOf(configuration.getGetMaximum().get()));
+        if (configuration.getGetMaximum().apply(car) != null) {
+            maximum.setText(String.valueOf(configuration.getGetMaximum().apply(car)));
         }
 
         maximum.setPromptText("Máximo");
@@ -66,8 +70,8 @@ public class RangedQuestion implements Question<RangedDoubleQuestionConfiguratio
             }
 
             view.changePseudoCar(pseudoCar -> {
-                configuration.getSetMaximum().accept(max);
-                configuration.getSetMinimum().accept(min);
+                configuration.getSetMaximum().accept(car, max);
+                configuration.getSetMinimum().accept(car, min);
             });
 
             view.invokeNextQuestion();

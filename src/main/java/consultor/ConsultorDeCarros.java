@@ -2,6 +2,7 @@ package consultor;
 
 import atlantafx.base.theme.PrimerDark;
 import consultor.car.*;
+import consultor.question.ranged.RangedDoubleQuestionConfigurationBuilder;
 import consultor.ui.QuestionView;
 import javafx.application.Application;
 import javafx.scene.layout.HBox;
