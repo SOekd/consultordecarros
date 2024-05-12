@@ -44,20 +44,24 @@ public class ConsultorDeCarros extends Application {
             Rule rule = new Rule(car.getModel());
 
             rule.addAntecedent(new EqualsClause("price", CarPriceCategory.fromPrice(car.getPrice()).name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("seatType", car.getSeatType().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("propulsion", car.getPropulsion().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("origin", car.getOrigin().name().toLowerCase(Locale.ROOT)));
 
-            rule.addAntecedent(new EqualsClause("size", car.getSize().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("transmission", car.getTransmission().name().toLowerCase(Locale.ROOT)));
+
             rule.addAntecedent(new EqualsClause("configuration", car.getConfiguration().name().toLowerCase(Locale.ROOT)));
-            rule.addAntecedent(new EqualsClause("aspiration", car.getAspiration().name().toLowerCase(Locale.ROOT)));
+
 
             rule.addAntecedent(new EqualsClause("fuelType", car.getFuelType().name().toLowerCase(Locale.ROOT)));
             rule.addAntecedent(new EqualsClause("transmission", car.getTransmission().name().toLowerCase(Locale.ROOT)));
             rule.addAntecedent(new EqualsClause("steeringType", car.getSteeringType().name().toLowerCase(Locale.ROOT)));
             rule.addAntecedent(new EqualsClause("traction", car.getTraction().name().toLowerCase(Locale.ROOT)));
-            rule.addAntecedent(new EqualsClause("propulsion", car.getPropulsion().name().toLowerCase(Locale.ROOT)));
 
+            rule.addAntecedent(new EqualsClause("size", car.getSize().name().toLowerCase(Locale.ROOT)));
 
-            rule.addAntecedent(new EqualsClause("origin", car.getOrigin().name().toLowerCase(Locale.ROOT)));
-            rule.addAntecedent(new EqualsClause("seatType", car.getSeatType().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("aspiration", car.getAspiration().name().toLowerCase(Locale.ROOT)));
+
 
             rule.setConsequent(new EqualsClause("vehicle", car.getModel()));
 

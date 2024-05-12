@@ -2,10 +2,13 @@ package consultor.car;
 
 public enum CarPriceCategory {
 
-    CHEAP("Barato (menos de 120.000", Double.MIN_VALUE, 120000),
-    MEDIUM("Medio (120.000 - 240.000)", 120000, 240000),
-    EXPENSIVE("Caro (240.000 - 360.000)", 240000, 360000),
-    LUXURY("Luxo (más de 360.000)", 360000, Double.MAX_VALUE);
+    ACCESSIBLE("Acessível (R$ 0 até R$ 90.000)", 0, 90000),
+    INTERMEDIATE("Intermediário (R$ 90.000 até R$ 130.000)", 90000, 130000),
+    PREMIUM("Premium (R$ 130.000 até R$ 180.000)", 130000, 180000),
+    LUXURY("Luxo (R$ 180.000 até R$ 220.000)", 180000, 220000),
+    HIGH_LUXURY("Alto Luxo (R$ 220.000 até R$ 300.000)", 220000, 300000),
+    ELITE("Elite (R$ 300.000 até R$ 350.000)", 300000, 350000);
+
 
     private final String displayName;
 
