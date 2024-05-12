@@ -8,7 +8,7 @@ module consultor {
     requires atlantafx.base;
     requires org.dhatim.fastexcel.reader;
 
-
     exports consultor;
     exports consultor.car;
+    exports consultor.question.ui;
 }

@@ -3,41 +3,23 @@ package consultor.car;
 import java.util.Objects;
 
 public class Car {
-
     private final String model;
-
     private final double price;
-
     private final CarSize size;
-
     private final CarConfiguration configuration;
-
     private final CarAspiration aspiration;
-
     private final double autonomy;
-
     private final double consumption;
-
     private final double acceleration;
-
     private final CarFuelType fuelType;
-
     private final CarTransmission transmission;
-
     private final CarSteeringType steeringType;
-
     private final CarTraction traction;
-
     private final CarPropulsion propulsion;
-
     private final int warranty;
-
     private final int seats;
-
     private final int trunk;
-
     private final CarOrigin origin;
-
     private final CarSeatType seatType;
 
     public Car(String model, double price, CarSize size, CarConfiguration configuration, CarAspiration aspiration, double autonomy, double consumption, double acceleration, CarFuelType fuelType, CarTransmission transmission, CarSteeringType steeringType, CarTraction traction, CarPropulsion propulsion, int warranty, int seats, int trunk, CarOrigin origin, CarSeatType seatType) {

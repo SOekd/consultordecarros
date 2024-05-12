@@ -2,10 +2,9 @@ package consultor;
 
 import atlantafx.base.theme.PrimerDark;
 import consultor.car.*;
-import consultor.question.ranged.RangedDoubleQuestionConfigurationBuilder;
-import consultor.ui.QuestionView;
+import consultor.question.ui.QuestionView;
+import consultor.shell.engine.*;
 import javafx.application.Application;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.dhatim.fastexcel.reader.Cell;
@@ -15,15 +14,14 @@ import org.dhatim.fastexcel.reader.Sheet;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class ConsultorDeCarros extends Application {
 
     private final List<Car> cars = new ArrayList<>();
+
+    private final RuleInferenceEngine ruleInferenceEngine = new KieRuleInferenceEngine();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -31,12 +29,43 @@ public class ConsultorDeCarros extends Application {
 
         parseCar();
 
+        startInferenceEngine();
+
         VBox root = new VBox();
 
-        primaryStage.setScene(new QuestionView(root, cars));
+        primaryStage.setScene(new QuestionView(ruleInferenceEngine, root, cars));
 
         primaryStage.show();
     }
+
+    private void startInferenceEngine() {
+
+        for (Car car : cars) {
+            Rule rule = new Rule(car.getModel());
+
+            rule.addAntecedent(new EqualsClause("price", CarPriceCategory.fromPrice(car.getPrice()).name().toLowerCase(Locale.ROOT)));
+
+            rule.addAntecedent(new EqualsClause("size", car.getSize().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("configuration", car.getConfiguration().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("aspiration", car.getAspiration().name().toLowerCase(Locale.ROOT)));
+
+            rule.addAntecedent(new EqualsClause("fuelType", car.getFuelType().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("transmission", car.getTransmission().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("steeringType", car.getSteeringType().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("traction", car.getTraction().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("propulsion", car.getPropulsion().name().toLowerCase(Locale.ROOT)));
+
+
+            rule.addAntecedent(new EqualsClause("origin", car.getOrigin().name().toLowerCase(Locale.ROOT)));
+            rule.addAntecedent(new EqualsClause("seatType", car.getSeatType().name().toLowerCase(Locale.ROOT)));
+
+            rule.setConsequent(new EqualsClause("vehicle", car.getModel()));
+
+            ruleInferenceEngine.addRule(rule);
+        }
+
+    }
+
 
     private void parseCar() {
         cars.clear();
@@ -67,6 +96,7 @@ public class ConsultorDeCarros extends Application {
         });
 
         cars.forEach(System.out::println);
+
     }
 
 

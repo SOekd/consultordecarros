@@ -19,7 +19,7 @@ public enum CarPropulsion {
 
     public static CarPropulsion findByDisplayName(String displayName) {
         for (CarPropulsion carPropulsion : values()) {
-            if (carPropulsion.getDisplayName().equalsIgnoreCase(displayName)) {
+            if (carPropulsion.getDisplayName().equalsIgnoreCase(displayName.trim())) {
                 return carPropulsion;
             }
         }
